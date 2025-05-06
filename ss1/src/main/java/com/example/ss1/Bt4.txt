@@ -1,0 +1,7 @@
+| Vấn đề                        | Triệu chứng                                           | Cách xử lý                                                                                               |
+| ----------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Port 8080 đã dùng**         | Tomcat báo lỗi “Address already in use: 8080”         | - Dừng ứng dụng/ dịch vụ đang chiếm cổng<br/>- Thay đổi cổng trong `conf/server.xml`                     |
+| **404 Not Found**             | Trình duyệt không tìm thấy `/my-simple-app/`          | - Đảm bảo `my-simple-app.war` đã được unpack vào `webapps/`<br/>- Kiểm tra `web.xml`                     |
+| **500 Internal Server Error** | Lỗi logic servlet hoặc thiếu thư viện                 | - Mở `logs/catalina.out` để xem stacktrace<br/>- Kiểm tra dependencies (Servlet API là provided)         |
+| **WAR không unpack**          | Trong `webapps/` chỉ có file `.war`, không có thư mục | - Kiểm tra quyền ghi của thư mục Tomcat<br/>- Khởi động lại Tomcat                                       |
+| **Encoding lỗi tiếng Việt**   | Ký tự Unicode hiển thị “?”                            | - Đặt `<Connector URIEncoding="UTF-8" />` trong `conf/server.xml`<br/>- Thêm `<meta charset>` trong HTML |

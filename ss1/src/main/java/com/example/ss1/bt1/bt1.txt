@@ -1,0 +1,23 @@
+1. Các thành phần chính và chức năng ngắn gọn:
+
+Client
+Giao diện người dùng (trình duyệt web hoặc ứng dụng di động) gửi yêu cầu HTTP tới Web Server.
+
+Web Server
+Nhận và xử lý các yêu cầu HTTP tĩnh (HTML/CSS/JS) hoặc chuyển tiếp (proxy) các yêu cầu động tới Application Server
+(ví dụ: Apache, Nginx, hoặc Tomcat khi chỉ làm web server).
+
+Application Server
+Chạy logic nghiệp vụ Java (Java EE container như WildFly, WebLogic, hoặc Spring Boot embedded server),
+xử lý yêu cầu, gọi service, và sinh ra phản hồi (thường dưới dạng JSON, HTML).
+
+Database
+Lưu trữ dữ liệu ứng dụng (quan hệ như MySQL, PostgreSQL, hoặc NoSQL như MongoDB). Ứng dụng truy vấn và cập nhật dữ liệu qua JDBC hoặc ORM (Hibernate).
+
+2. Cách các thành phần tương tác với nhau:
+
+Khách hàng (Client) tạo một yêu cầu HTTP (ví dụ: truy cập trang sản phẩm) gửi đến Web Server.
+Web Server phân tích URL: nếu là tài nguyên tĩnh, trả về trực tiếp; nếu là tài nguyên động,
+chuyển tiếp yêu cầu tới Application Server. Application Server nhận yêu cầu, thực thi logic nghiệp vụ (gọi service, xử lý dữ liệu),
+sau đó qua DAO/ORM thực hiện truy vấn hoặc cập nhật dữ liệu lên Database. Khi hoàn thành,
+Application Server đóng gói kết quả (HTML hoặc JSON) rồi gửi ngược lại Web Server, từ đó Web Server trả về cho Client để hiển thị giao diện cho người dùng.
