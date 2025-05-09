@@ -16,7 +16,7 @@ public class SeatServlet extends HttpServlet {
         for (char row = 'A'; row <= 'E'; row++) {
             for (int num = 1; num <= 10; num++) {
                 String code = "" + row + num;
-                seats.add(new Seat(code, code, 50000, false));
+                seats.add(new Seat(code, code, 10, false));
             }
         }
     }
