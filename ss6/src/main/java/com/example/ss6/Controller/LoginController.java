@@ -15,7 +15,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("view/user/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("view/bt2/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
                 resp.sendRedirect("books");
             } else {
                 req.setAttribute("error", "Sai username hoặc password");
-                req.getRequestDispatcher("view/user/login.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt2/login.jsp").forward(req, resp);
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);

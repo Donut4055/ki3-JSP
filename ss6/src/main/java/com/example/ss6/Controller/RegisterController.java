@@ -17,7 +17,7 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("view/user/register.jsp").forward(req, resp);
+        req.getRequestDispatcher("view/bt2/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
         try {
             if (svc.authenticate(u, p) != null) {
                 req.setAttribute("error", "Username đã tồn tại");
-                req.getRequestDispatcher("view/user/register.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt2/register.jsp").forward(req, resp);
                 return;
             }
             svc.register(new User(u,p,e,phone));

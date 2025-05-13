@@ -29,13 +29,13 @@ public class BookController extends HttpServlet {
         try {
             switch(action == null ? "" : action) {
                 case "add":
-                    req.getRequestDispatcher("view/lib/formAdd.jsp").forward(req, resp);
+                    req.getRequestDispatcher("view/bt1/formAdd.jsp").forward(req, resp);
                     break;
                 case "edit":
                     String code = req.getParameter("bookCode");
                     Book b = service.getByCode(code);
                     req.setAttribute("book", b);
-                    req.getRequestDispatcher("view/lib/formEdit.jsp").forward(req, resp);
+                    req.getRequestDispatcher("view/bt1/formEdit.jsp").forward(req, resp);
                     break;
                 default:
                     String kw = req.getParameter("keyword");
@@ -43,7 +43,7 @@ public class BookController extends HttpServlet {
                             ? service.getAll()
                             : service.search(kw);
                     req.setAttribute("books", list);
-                    req.getRequestDispatcher("view/lib/listBook.jsp").forward(req, resp);
+                    req.getRequestDispatcher("view/bt1/listBook.jsp").forward(req, resp);
                     break;
             }
         } catch (SQLException e) {
