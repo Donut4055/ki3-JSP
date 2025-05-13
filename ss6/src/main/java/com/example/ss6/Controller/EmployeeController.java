@@ -23,24 +23,24 @@ public class EmployeeController extends HttpServlet {
         if (action == null || action.equals("list")) {
             List<Employee> employees = employeeService.findAll();
             req.setAttribute("employees", employees);
-            req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+            req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
         } else if (action.equals("search")) {
             int id = Integer.parseInt(req.getParameter("id"));
             Employee employee = employeeService.findById(id);
             req.setAttribute("employees", employee != null ? List.of(employee) : List.of());
-            req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+            req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
         } else if (action.equals("edit")) {
             int id = Integer.parseInt(req.getParameter("id"));
             Employee employee = employeeService.findById(id);
             if (employee != null) {
                 req.setAttribute("employee", employee);
-                req.getRequestDispatcher("views/bt4/updateEmployee.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt4/updateEmployee.jsp").forward(req, resp);
             } else {
                 req.setAttribute("error", "Không tìm thấy nhân viên với ID: " + id);
-                req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
             }
         } else if (action.equals("add")) {
-            req.getRequestDispatcher("views/bt4/addEmployee.jsp").forward(req, resp);
+            req.getRequestDispatcher("view/bt4/addEmployee.jsp").forward(req, resp);
         }
     }
 
@@ -57,7 +57,7 @@ public class EmployeeController extends HttpServlet {
                 employee.setPosition(req.getParameter("position"));
                 employeeService.save(employee);
                 req.setAttribute("message", "Thêm nhân viên thành công!");
-                req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
             } else if (action.equals("update")) {
                 Employee employee = new Employee();
                 employee.setId(Integer.parseInt(req.getParameter("id")));
@@ -68,16 +68,16 @@ public class EmployeeController extends HttpServlet {
                 employee.setPosition(req.getParameter("position"));
                 employeeService.update(employee);
                 req.setAttribute("message", "Cập nhật thông tin nhân viên thành công!");
-                req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
             } else if (action.equals("delete")) {
                 int id = Integer.parseInt(req.getParameter("id"));
                 employeeService.delete(id);
                 req.setAttribute("message", "Xóa nhân viên thành công!");
-                req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+                req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
             }
         } catch (Exception e) {
             req.setAttribute("error", "Đã xảy ra lỗi: " + e.getMessage());
-            req.getRequestDispatcher("views/bt4/employeeList.jsp").forward(req, resp);
+            req.getRequestDispatcher("view/bt4/employeeList.jsp").forward(req, resp);
         }
     }
 }

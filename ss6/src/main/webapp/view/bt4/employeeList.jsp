@@ -37,7 +37,7 @@
         <tr>
             <td>${employee.id}</td>
             <td>${employee.name}</td>
-            <td><fmt:formatDate value="${employee.birthday}" pattern="yyyy-MM-dd"/></td>
+            <td>${employee.birthday}</td>
             <td>${employee.phone}</td>
             <td><fmt:formatNumber value="${employee.salary}" type="number" minFractionDigits="2" maxFractionDigits="2"/></td>
             <td>${employee.position}</td>
