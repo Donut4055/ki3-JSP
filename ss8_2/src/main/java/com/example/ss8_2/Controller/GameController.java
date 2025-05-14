@@ -100,9 +100,9 @@ public class GameController {
 
     @GetMapping("/farm")
     public String showFarm(Model model) {
-//        if (loggedInUser == null) {
-//            return "/login";
-//        }
+        if (loggedInUser == null) {
+            return "/login";
+        }
         model.addAttribute("warehouse", warehouse);
         model.addAttribute("farm", farm);
         model.addAttribute("seeds", seeds);
