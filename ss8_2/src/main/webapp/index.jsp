@@ -8,6 +8,8 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
+<a href="${pageContext.request.contextPath}/products">bt23</a>
+<a href="${pageContext.request.contextPath}/quiz">bt7</a>
 <a href="${pageContext.request.contextPath}/bt8910/farm">bt8910</a>
 </body>
 </html>
