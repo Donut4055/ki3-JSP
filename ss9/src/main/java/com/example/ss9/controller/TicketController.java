@@ -1,11 +1,9 @@
 package com.example.ss9.controller;
 
-
-import javax.servlet.http.HttpSession;
-
 import com.example.ss9.model.Seat;
 import com.example.ss9.service.SeatService;
 import com.example.ss9.service.TicketService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +21,7 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
+
     @GetMapping("/booking")
     public String showBookingPage(@RequestParam Long scheduleId,
                                   @RequestParam Long screenRoomId,
@@ -37,8 +36,10 @@ public class TicketController {
         return "booking";
     }
 
+
     @PostMapping("/book")
     public String bookTicket(@RequestParam Long scheduleId,
+                             @RequestParam Long screenRoomId,
                              @RequestParam Long seatId,
                              @RequestParam Double price,
                              HttpSession session,
@@ -52,7 +53,16 @@ public class TicketController {
         ticketService.bookTicket(customerId, scheduleId, seatId, price);
 
         model.addAttribute("message", "Đặt vé thành công!");
-        return "redirect:/tickets/booking?scheduleId=" + scheduleId;
+        return "redirect:/tickets/booking"
+                + "?scheduleId=" + scheduleId
+                + "&screenRoomId=" + screenRoomId;
+    }
+
+    @GetMapping("/book")
+    public String handleGetBook(@RequestParam Long scheduleId,
+                                @RequestParam Long screenRoomId) {
+        return "redirect:/tickets/booking"
+                + "?scheduleId=" + scheduleId
+                + "&screenRoomId=" + screenRoomId;
     }
 }
-

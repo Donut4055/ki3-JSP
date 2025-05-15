@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -17,9 +18,13 @@ public class HomeController {
     private MovieService movieService;
 
     @GetMapping({"/", "/home"})
-    public String showHomePage(Model model) {
+    public String showHomePage(Model model, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+
         List<Movie> movies = movieService.getAllMovies();
         model.addAttribute("movies", movies);
-        return "/home";
+        return "home";
     }
 }

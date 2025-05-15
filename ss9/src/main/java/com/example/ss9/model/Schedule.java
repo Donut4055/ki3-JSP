@@ -9,7 +9,6 @@ public class Schedule {
     private Date showTime;
     private Long screenRoomId;
     private Integer availableSeats;
-    private String format;
 
     public Schedule() {}
 
@@ -28,7 +27,5 @@ public class Schedule {
     public Integer getAvailableSeats() { return availableSeats; }
     public void setAvailableSeats(Integer availableSeats) { this.availableSeats = availableSeats; }
 
-    public String getFormat() { return format; }
-    public void setFormat(String format) { this.format = format; }
 }
 

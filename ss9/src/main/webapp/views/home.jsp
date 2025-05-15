@@ -1,6 +1,6 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,7 @@
         <th>Thể loại</th>
         <th>Thời lượng (phút)</th>
         <th>Ngôn ngữ</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -27,6 +28,12 @@
             <td>${movie.genre}</td>
             <td>${movie.duration}</td>
             <td>${movie.language}</td>
+            <td>
+                <!-- Nút Đặt vé -->
+                <a href="${pageContext.request.contextPath}/movies/${movie.id}/schedules">
+                    Đặt vé
+                </a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

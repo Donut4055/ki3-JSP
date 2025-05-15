@@ -29,6 +29,7 @@ public class UserController {
         User user = userService.login(username, password);
         if (user != null) {
             session.setAttribute("loggedInUser", user);
+            session.setAttribute("loggedInUserId", user.getId());
             return "redirect:/home";
         } else {
             model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng.");

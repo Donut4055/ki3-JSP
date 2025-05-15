@@ -26,11 +26,10 @@ public class ScheduleDAOImpl implements ScheduleDAO {
             while (rs.next()) {
                 Schedule schedule = new Schedule();
                 schedule.setId(rs.getLong("id"));
-                schedule.setShowTime(rs.getTimestamp("show_time"));
-                schedule.setScreenRoomId(rs.getLong("screen_room_id"));
                 schedule.setMovieTitle(rs.getString("movieTitle"));
+                schedule.setScreenRoomId(rs.getLong("screen_room_id"));
+                schedule.setShowTime(rs.getTimestamp("show_time"));
                 schedule.setAvailableSeats(rs.getInt("availableSeats"));
-                schedule.setFormat(rs.getString("format"));
                 list.add(schedule);
             }
 
