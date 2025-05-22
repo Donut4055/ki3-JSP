@@ -8,6 +8,10 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="${pageContext.request.contextPath}/bt1">bt12346</a>
+<a href="${pageContext.request.contextPath}/register">bt5</a>
+<a href="${pageContext.request.contextPath}/review">bt6</a>
+<a href="${pageContext.request.contextPath}/categories">bt89</a>
+<a href="${pageContext.request.contextPath}/movies">bt10</a>
 </body>
 </html>

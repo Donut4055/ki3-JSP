@@ -1,11 +1,10 @@
-package com.example.ss11.config;
+package com.example.ss10.config;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -17,7 +16,7 @@ import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.example.ss11")
+@ComponentScan(basePackages = "com.example.ss10")
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
@@ -50,10 +49,5 @@ public class WebConfig implements WebMvcConfigurer {
         UrlPathHelper helper = new UrlPathHelper();
         helper.setRemoveSemicolonContent(false);
         configurer.setUrlPathHelper(helper);
-    }
-
-    @Bean
-    public javax.validation.Validator validator() {
-        return new LocalValidatorFactoryBean();
     }
 }
