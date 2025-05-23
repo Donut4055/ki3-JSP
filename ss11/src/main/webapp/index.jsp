@@ -13,5 +13,7 @@
 <a href="${pageContext.request.contextPath}/review">bt6</a>
 <a href="${pageContext.request.contextPath}/categories">bt89</a>
 <a href="${pageContext.request.contextPath}/movies">bt10</a>
+
+<%--link vid: https://youtu.be/aQCR-o8MkXc?si=Duza3meUZmNqKIHl--%>
 </body>
 </html>
