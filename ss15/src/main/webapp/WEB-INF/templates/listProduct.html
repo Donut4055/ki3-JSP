@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h2>Danh sách sản phẩm</h2>
+<a href="/products/add">Thêm mới sản phẩm</a>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>ID</th>
+    <th>Tên sản phẩm</th>
+    <th>Giá</th>
+    <th>Mô tả</th>
+    <th>Thao tác</th>
+    <th>Thêm vào giỏ hàng</th>
+  </tr>
+  <tr th:each="p : ${products}">
+    <td th:text="${p.id}"></td>
+    <td th:text="${p.name}"></td>
+    <td th:text="${#numbers.formatDecimal(p.price, 1, 'COMMA', 2, 'POINT')}"></td>
+    <td th:text="${p.description}"></td>
+    <td>
+      <a th:href="@{|/products/${p.id}|}">Chi tiết</a> |
+      <a th:href="@{|/products/edit/${p.id}|}">Sửa</a> |
+      <a th:href="@{|/products/delete/${p.id}|}" onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+    </td>
+    <td>
+      <form th:action="@{/cart/add}" method="post" style="display:inline;">
+        <input type="hidden" name="productId" th:value="${p.id}"/>
+        <input type="number" name="quantity" value="1" min="1" style="width:50px;"/>
+        <button type="submit">Thêm vào giỏ</button>
+      </form>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(products)}">
+    <td colspan="6">Không có sản phẩm nào.</td>
+  </tr>
+</table>
+<a th:href="@{/cart}">Xem giỏ hàng</a>
+</body>
+</html>

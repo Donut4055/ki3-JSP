@@ -14,5 +14,7 @@
 <a href="${pageContext.request.contextPath}/order/form">bt8</a>
 <a href="${pageContext.request.contextPath}/finance/form">bt9</a>
 <a href="${pageContext.request.contextPath}/category">bt10</a>
+
+<%--link vid: https://www.youtube.com/watch?v=ZnZ0P8Q3sWY--%>
 </body>
 </html>

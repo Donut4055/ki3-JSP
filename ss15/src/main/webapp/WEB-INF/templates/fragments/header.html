@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div th:fragment="header">
+    <header style="background:#eee; padding:10px;">
+        <h1>My Website</h1>
+        <nav>
+            <a th:href="@{/bt4}">Home</a> |
+            <a th:href="@{/bt4/about}">About</a> |
+            <a th:href="@{/bt4/contact}">Contact</a>
+        </nav>
+    </header>
+    <hr/>
+</div>
+</body>
+</html>

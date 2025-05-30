@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Giỏ hàng</title>
+</head>
+<body>
+<h2>Giỏ hàng của bạn</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+        <th>Xóa</th>
+    </tr>
+    <tr th:each="c : ${cartList}">
+        <td th:text="${c.productName}"></td>
+        <td th:text="${c.quantity}"></td>
+        <td th:text="${#numbers.formatDecimal(c.productPrice, 1, 'COMMA', 2, 'POINT')}"></td>
+        <td th:text="${#numbers.formatDecimal(c.quantity * c.productPrice, 1, 'COMMA', 2, 'POINT')}"></td>
+        <td>
+            <a th:href="@{|/cart/delete/${c.idCart}|}" onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(cartList)}">
+        <td colspan="5">Giỏ hàng trống.</td>
+    </tr>
+</table>
+<p><b>Tổng tiền:</b> <span th:text="${#numbers.formatDecimal(totalPrice, 1, 'COMMA', 2, 'POINT')}"></span></p>
+<a th:href="@{/orders/checkout}" th:if="${not #lists.isEmpty(cartList)}"><button>Tiến hành đặt hàng</button></a>
+<a th:href="@{/products}">Tiếp tục mua hàng</a>
+</body>
+</html>
