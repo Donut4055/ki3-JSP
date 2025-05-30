@@ -14,5 +14,7 @@
 <a href="${pageContext.request.contextPath}/search">bt5</a>
 <a href="${pageContext.request.contextPath}/products">bt6789</a>
 <a href="${pageContext.request.contextPath}/cvs">bt10</a>
+
+<%--link vid : https://youtu.be/cDXlCE9qRTM--%>
 </body>
 </html>
