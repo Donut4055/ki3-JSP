@@ -100,4 +100,33 @@ public class CVDAO {
         cv.setSkills(rs.getString("skills"));
         return cv;
     }
+
+    public boolean existsByEmail(String email) {
+        String sql = "SELECT 1 FROM cv WHERE email = ?";
+        try (Connection conn = ConnectionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean existsByEmailExceptId(String email, Long id) {
+        String sql = "SELECT 1 FROM cv WHERE email = ? AND id <> ?";
+        try (Connection conn = ConnectionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ps.setLong(2, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

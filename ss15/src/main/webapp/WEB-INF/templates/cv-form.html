@@ -10,17 +10,17 @@
     <form th:action="@{${cv.id == null} ? '/cvs/add' : '/cvs/edit/' + ${cv.id}}" th:object="${cv}" method="post">
         <div class="mb-3">
             <label class="form-label">Tên đầy đủ</label>
-            <input type="text" class="form-control" th:field="*{fullName}" required>
+            <input type="text" class="form-control" th:field="*{fullName}" >
             <div class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
         </div>
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" th:field="*{email}" required>
+            <input type="email" th:field="*{email}" class="form-control" required>
             <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
         <div class="mb-3">
             <label class="form-label">Số điện thoại</label>
-            <input type="text" class="form-control" th:field="*{phoneNumber}" required>
+            <input type="text" class="form-control" th:field="*{phoneNumber}" >
             <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
         </div>
         <div class="mb-3">

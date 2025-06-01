@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SVServiceImpl implements CVService {
+public class CVServiceImpl implements CVService {
     @Autowired
     private CVDAO cvDAO;
 
@@ -22,8 +22,18 @@ public class SVServiceImpl implements CVService {
     }
 
     @Override
-    public CV save(CV resume) {
-        return cvDAO.save(resume);
+    public CV save(CV sv) {
+        if (sv.getId() == null) {
+            if (cvDAO.existsByEmail(sv.getEmail())) {
+                throw new RuntimeException("Email đã tồn tại!");
+            }
+            return cvDAO.save(sv);
+        } else {
+            if (cvDAO.existsByEmailExceptId(sv.getEmail(), sv.getId())) {
+                throw new RuntimeException("Email đã tồn tại!");
+            }
+            return cvDAO.save(sv);
+        }
     }
 
     @Override
@@ -31,4 +41,5 @@ public class SVServiceImpl implements CVService {
         cvDAO.deleteById(id);
     }
 }
+
 

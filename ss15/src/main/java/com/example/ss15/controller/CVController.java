@@ -30,10 +30,14 @@ public class CVController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("cv") @Valid CV cv, BindingResult result, Model model) {
+        try {
+            cvService.save(cv);
+        } catch (RuntimeException ex) {
+            result.rejectValue("email", "error.cv", ex.getMessage());
+        }
         if (result.hasErrors()) {
             return "cv-form";
         }
-        cvService.save(cv);
         return "redirect:/cvs";
     }
 
