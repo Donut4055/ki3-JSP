@@ -18,9 +18,11 @@
             <p th:text="'Số lượng còn: ' + ${product.stock}"></p>
             <form th:action="@{|/cart/add/${product.id}|}" method="post" th:if="${session.currentUser != null}">
                 <div class="input-group mb-3" style="max-width: 200px;">
+                    <input type="number" name="quantity" min="1" th:attr="max=${product.stock}" value="1" class="form-control" required hidden>
                     <button type="submit" class="btn btn-success">Thêm vào giỏ hàng</button>
                 </div>
             </form>
+
             <div th:if="${session.currentUser == null}">
                 <a th:href="@{/login}" class="btn btn-outline-primary">Đăng nhập để mua hàng</a>
             </div>
