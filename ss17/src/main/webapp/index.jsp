@@ -9,5 +9,6 @@
 </h1>
 <br/>
 <a href="register"> dang ki</a>
+<%--link vid : https://www.youtube.com/watch?v=Sfp7wJFkjp0--%>
 </body>
 </html>
