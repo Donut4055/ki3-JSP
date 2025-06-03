@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
@@ -46,6 +48,21 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findById(Integer id) {
         return customerRepository.findById(id);
+    }
+
+    @Override
+    public List<Customer> findAllWithPagination(int page, int size, String search) {
+        return customerRepository.findAllWithPagination(page, size, search);
+    }
+
+    @Override
+    public long countWithSearch(String search) {
+        return customerRepository.countWithSearch(search);
+    }
+
+    @Override
+    public long countAll() {
+        return customerRepository.countAll();
     }
 }
 

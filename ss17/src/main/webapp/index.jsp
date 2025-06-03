@@ -8,6 +8,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
+<a href="login">dang nhap</a>
 <a href="register"> dang ki</a>
 <%--link vid : https://www.youtube.com/watch?v=Sfp7wJFkjp0--%>
 </body>

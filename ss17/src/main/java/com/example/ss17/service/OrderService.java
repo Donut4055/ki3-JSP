@@ -10,5 +10,10 @@ public interface OrderService {
     long countOrdersByCustomerId(Integer customerId);
     Orders findById(Integer id);
     void update(Orders order);
+
+    List<Orders> findAllWithFilter(int page, int size, String search, String status, String startDate, String endDate);
+    long countWithFilter(String search, String status, String startDate, String endDate);
+    long countAll();
+    double getTotalRevenue();
 }
 

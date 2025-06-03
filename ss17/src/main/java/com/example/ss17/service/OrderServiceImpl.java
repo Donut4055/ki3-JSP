@@ -38,5 +38,25 @@ public class OrderServiceImpl implements OrderService {
     public void update(Orders order) {
         orderRepository.update(order);
     }
+
+    @Override
+    public List<Orders> findAllWithFilter(int page, int size, String search, String status, String startDate, String endDate) {
+        return orderRepository.findAllWithFilter(page, size, search, status, startDate, endDate);
+    }
+
+    @Override
+    public long countWithFilter(String search, String status, String startDate, String endDate) {
+        return orderRepository.countWithFilter(search, status, startDate, endDate);
+    }
+
+    @Override
+    public long countAll() {
+        return orderRepository.countAll();
+    }
+
+    @Override
+    public double getTotalRevenue() {
+        return orderRepository.getTotalRevenue();
+    }
 }
 

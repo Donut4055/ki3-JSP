@@ -23,4 +23,34 @@ public class ProductServiceImpl implements ProductService {
     public Product findById(Integer id) {
         return productRepository.findById(id);
     }
+
+    @Override
+    public void save(Product product) {
+        productRepository.save(product);
+    }
+
+    @Override
+    public void update(Product product) {
+        productRepository.update(product);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        productRepository.delete(id);
+    }
+
+    @Override
+    public List<Product> findAllWithPagination(int page, int size, String search) {
+        return productRepository.findAllWithPagination(page, size, search);
+    }
+
+    @Override
+    public long countWithSearch(String search) {
+        return productRepository.countWithSearch(search);
+    }
+
+    @Override
+    public long countAll() {
+        return productRepository.countAll();
+    }
 }
