@@ -21,14 +21,13 @@
 
         <div class="mb-3">
             <label class="form-label">Rạp chiếu *</label>
-            <select th:field="*{theater}" class="form-select"
-                    th:classappend="${#fields.hasErrors('theater')} ? 'is-invalid'">
+            <select name="theaterId" class="form-select" required>
                 <option value="">-- Chọn rạp chiếu --</option>
                 <option th:each="theater : ${theaters}"
-                        th:value="${theater.id}"
-                        th:text="${theater.theaterName + ' - ' + theater.address}"></option>
+                        th:value="${theater.theater_id}"
+                        th:text="${theater.theaterName + ' - ' + theater.address}"
+                        th:selected="${screenRoom.theater != null and screenRoom.theater.theater_id == theater.theater_id}"></option>
             </select>
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('theater')}" th:errors="*{theater}"></div>
         </div>
 
         <div class="row">
@@ -65,14 +64,13 @@
         </div>
 
         <div class="alert alert-info" th:if="${screenRoom.id == null}">
-            <i class="bi bi-info-circle"></i>
             <strong>Lưu ý:</strong> Sau khi tạo phòng chiếu, hệ thống sẽ tự động tạo ghế theo quy tắc A1, A2, ..., B1, B2, ... với số lượng bằng sức chứa.
         </div>
 
         <button type="submit" class="btn btn-success">
             <span th:text="${screenRoom.id == null ? 'Thêm phòng chiếu' : 'Cập nhật'}"></span>
         </button>
-        <a th:href="@{/screen-rooms}" class="btn btn-secondary">Hủy</a>
+        <a th:href="@{/screen-rooms}" class="btn btn-secondary">Quay lại</a>
     </form>
 </div>
 </body>

@@ -1,13 +1,14 @@
 package com.example.ss19.controller;
 
-
 import com.example.ss19.entity.ScreenRoom;
 import com.example.ss19.entity.Seat;
+import com.example.ss19.entity.Theater;
 import com.example.ss19.repository.SeatRepository;
 import com.example.ss19.service.ScreenRoomService;
 import com.example.ss19.service.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,16 @@ public class ScreenRoomController {
     private TheaterService theaterService;
     @Autowired
     private SeatRepository seatRepository;
+
     @GetMapping
+    @Transactional(readOnly = true)
     public String listScreenRooms(Model model) {
         List<ScreenRoom> screenRooms = screenRoomService.findByStatus(true);
+
+        for (ScreenRoom sr : screenRooms) {
+            long seatCount = seatRepository.countByScreenRoomId(sr.getId());
+        }
+
         model.addAttribute("screenRooms", screenRooms);
         return "screen-rooms/list";
     }
@@ -41,11 +49,16 @@ public class ScreenRoomController {
     @PostMapping("/add")
     public String addScreenRoom(@ModelAttribute("screenRoom") @Valid ScreenRoom screenRoom,
                                 BindingResult result,
+                                @RequestParam("theaterId") Long theaterId,
                                 Model model) {
         if (result.hasErrors()) {
             model.addAttribute("theaters", theaterService.findByStatus(true));
             return "screen-rooms/form";
         }
+
+        Theater theater = theaterService.findById(theaterId);
+        screenRoom.setTheater(theater);
+
         screenRoomService.save(screenRoom);
         return "redirect:/screen-rooms";
     }
@@ -65,12 +78,16 @@ public class ScreenRoomController {
     public String editScreenRoom(@PathVariable Long id,
                                  @ModelAttribute("screenRoom") @Valid ScreenRoom screenRoom,
                                  BindingResult result,
+                                 @RequestParam("theaterId") Long theaterId,
                                  Model model) {
         if (result.hasErrors()) {
             model.addAttribute("theaters", theaterService.findByStatus(true));
             return "screen-rooms/form";
         }
+
+        Theater theater = theaterService.findById(theaterId);
         screenRoom.setId(id);
+        screenRoom.setTheater(theater);
         screenRoomService.update(screenRoom);
         return "redirect:/screen-rooms";
     }
@@ -82,6 +99,7 @@ public class ScreenRoomController {
     }
 
     @GetMapping("/seats/{id}")
+    @Transactional(readOnly = true)
     public String viewSeats(@PathVariable Long id, Model model) {
         ScreenRoom screenRoom = screenRoomService.findById(id);
         if (screenRoom == null) {

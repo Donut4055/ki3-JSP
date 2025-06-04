@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr th:each="theater : ${theaters}">
-            <td th:text="${theater.id}"></td>
+            <td th:text="${theater.theater_id}"></td>
             <td th:text="${theater.theaterName}"></td>
             <td th:text="${theater.address}"></td>
             <td th:text="${theater.numberScreenRoom}"></td>
@@ -33,8 +33,8 @@
                           th:text="${theater.status} ? 'Đang hoạt động' : 'Ngừng hoạt động'"></span>
             </td>
             <td>
-                <a th:href="@{|/theaters/edit/${theater.id}|}" class="btn btn-sm btn-warning">Sửa</a>
-                <a th:href="@{|/theaters/delete/${theater.id}|}" class="btn btn-sm btn-danger"
+                <a th:href="@{|/theaters/edit/${theater.theater_id}|}" class="btn btn-sm btn-warning">Sửa</a>
+                <a th:href="@{|/theaters/delete/${theater.theater_id}|}" class="btn btn-sm btn-danger"
                    onclick="return confirm('Bạn có chắc muốn xóa rạp này?')">Xóa</a>
             </td>
         </tr>

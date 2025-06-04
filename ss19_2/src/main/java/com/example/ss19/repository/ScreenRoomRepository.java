@@ -1,6 +1,5 @@
 package com.example.ss19.repository;
 
-
 import com.example.ss19.entity.ScreenRoom;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +13,24 @@ public class ScreenRoomRepository {
     private SessionFactory sessionFactory;
 
     public List<ScreenRoom> findByStatus(Boolean status) {
+        String hql = "FROM ScreenRoom sr " +
+                "LEFT JOIN FETCH sr.theater " +
+                "WHERE sr.status = :status ORDER BY sr.id DESC";
         return sessionFactory.getCurrentSession()
-                .createQuery("FROM ScreenRoom WHERE status = :status ORDER BY id DESC", ScreenRoom.class)
+                .createQuery(hql, ScreenRoom.class)
                 .setParameter("status", status)
                 .getResultList();
     }
 
     public ScreenRoom findById(Long id) {
-        return sessionFactory.getCurrentSession().get(ScreenRoom.class, id);
+        String hql = "FROM ScreenRoom sr " +
+                "LEFT JOIN FETCH sr.theater " +
+                "LEFT JOIN FETCH sr.seats " +
+                "WHERE sr.id = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(hql, ScreenRoom.class)
+                .setParameter("id", id)
+                .uniqueResult();
     }
 
     public void save(ScreenRoom screenRoom) {
@@ -39,5 +48,13 @@ public class ScreenRoomRepository {
             update(screenRoom);
         }
     }
-}
 
+    public List<ScreenRoom> findAll() {
+        String hql = "FROM ScreenRoom sr " +
+                "LEFT JOIN FETCH sr.theater " +
+                "ORDER BY sr.id DESC";
+        return sessionFactory.getCurrentSession()
+                .createQuery(hql, ScreenRoom.class)
+                .getResultList();
+    }
+}

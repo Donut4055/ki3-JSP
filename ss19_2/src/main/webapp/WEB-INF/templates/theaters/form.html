@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${theater.id == null ? 'Thêm rạp mới' : 'Chỉnh sửa rạp'}"></title>
+    <title th:text="${theater.theater_id == null ? 'Thêm rạp mới' : 'Chỉnh sửa rạp'}"></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.5/css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container mt-4">
-    <h2 th:text="${theater.id == null ? 'Thêm rạp mới' : 'Chỉnh sửa rạp'}"></h2>
+    <h2 th:text="${theater.theater_id == null ? 'Thêm rạp mới' : 'Chỉnh sửa rạp'}"></h2>
 
-    <form th:action="@{${theater.id == null ? '/theaters/add' : '/theaters/edit/' + theater.id}}"
+    <form th:action="@{${theater.theater_id == null ? '/theaters/add' : '/theaters/edit/' + theater.theater_id}}"
           th:object="${theater}" method="post">
 
         <div class="mb-3">
@@ -40,7 +40,7 @@
         </div>
 
         <button type="submit" class="btn btn-success">
-            <span th:text="${theater.id == null ? 'Thêm rạp' : 'Cập nhật'}"></span>
+            <span th:text="${theater.theater_id == null ? 'Thêm rạp' : 'Cập nhật'}"></span>
         </button>
         <a th:href="@{/theaters}" class="btn btn-secondary">Hủy</a>
     </form>

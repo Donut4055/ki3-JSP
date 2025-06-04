@@ -28,4 +28,12 @@ public class SeatRepository {
                 .setParameter("screenRoomId", screenRoomId)
                 .getResultList();
     }
+
+    public long countByScreenRoomId(Long screenRoomId) {
+        String hql = "SELECT COUNT(*) FROM Seat WHERE screenRoom.id = :screenRoomId";
+        return (Long) sessionFactory.getCurrentSession()
+                .createQuery(hql)
+                .setParameter("screenRoomId", screenRoomId)
+                .uniqueResult();
+    }
 }

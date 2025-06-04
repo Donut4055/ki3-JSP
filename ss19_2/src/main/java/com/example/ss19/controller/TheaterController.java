@@ -59,7 +59,7 @@ public class TheaterController {
         if (result.hasErrors()) {
             return "theaters/form";
         }
-        theater.setId(id);
+        theater.setTheater_id(id);
         theaterService.update(theater);
         return "redirect:/theaters";
     }

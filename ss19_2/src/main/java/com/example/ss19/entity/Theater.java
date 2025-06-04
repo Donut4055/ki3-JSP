@@ -9,7 +9,7 @@ import java.util.List;
 public class Theater {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long theater_id;
 
     @NotBlank(message = "Tên rạp không được để trống")
     @Column(nullable = false)
@@ -30,8 +30,8 @@ public class Theater {
 
     public Theater() {}
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getTheater_id() { return theater_id; }
+    public void setTheater_id(Long id) { this.theater_id = id; }
 
     public String getTheaterName() { return theaterName; }
     public void setTheaterName(String theaterName) { this.theaterName = theaterName; }
