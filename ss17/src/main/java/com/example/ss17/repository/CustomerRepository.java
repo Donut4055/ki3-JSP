@@ -43,7 +43,7 @@ public class CustomerRepository {
     }
 
     public List<Customer> findAllWithPagination(int page, int size, String search) {
-        String hql = "FROM Customer WHERE (:search IS NULL OR :search = '' OR username LIKE :searchPattern OR email LIKE :searchPattern) ORDER BY id DESC";
+        String hql = "FROM Customer WHERE role <> 'ADMIN' AND (:search IS NULL OR :search = '' OR username LIKE :searchPattern OR email LIKE :searchPattern) ORDER BY id DESC";
         return sessionFactory.getCurrentSession()
                 .createQuery(hql, Customer.class)
                 .setParameter("search", search)
@@ -54,13 +54,14 @@ public class CustomerRepository {
     }
 
     public long countWithSearch(String search) {
-        String hql = "SELECT COUNT(*) FROM Customer WHERE (:search IS NULL OR :search = '' OR username LIKE :searchPattern OR email LIKE :searchPattern)";
+        String hql = "SELECT COUNT(*) FROM Customer WHERE role <> 'ADMIN' AND (:search IS NULL OR :search = '' OR username LIKE :searchPattern OR email LIKE :searchPattern)";
         return (Long) sessionFactory.getCurrentSession()
                 .createQuery(hql)
                 .setParameter("search", search)
                 .setParameter("searchPattern", search != null ? "%" + search + "%" : null)
                 .uniqueResult();
     }
+
 
     public long countAll() {
         String hql = "SELECT COUNT(*) FROM Customer";
