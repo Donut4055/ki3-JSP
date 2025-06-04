@@ -1,0 +1,31 @@
+package com.example.ss19.repository;
+
+import com.example.ss19.entity.Seat;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public class SeatRepository {
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public void save(Seat seat) {
+        sessionFactory.getCurrentSession().save(seat);
+    }
+
+    public void saveAll(List<Seat> seats) {
+        for (Seat seat : seats) {
+            save(seat);
+        }
+    }
+
+    public List<Seat> findByScreenRoomId(Long screenRoomId) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("FROM Seat WHERE screenRoom.id = :screenRoomId ORDER BY seatName", Seat.class)
+                .setParameter("screenRoomId", screenRoomId)
+                .getResultList();
+    }
+}
